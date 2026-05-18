@@ -1,0 +1,11 @@
+device_id,customer_id,device_type,ip_address,last_seen_city
+D001,C001,Android,49.36.120.11,Pune
+D002,C002,iPhone,103.22.11.91,Mumbai
+D003,C003,Android,49.36.120.11,Delhi
+D004,C004,iPhone,22.91.77.20,Bangalore
+D005,C005,Android,172.18.9.2,Patna
+D006,C006,iPhone,103.99.82.12,Hyderabad
+D007,C007,Android,172.18.9.2,Pune
+D008,C008,Android,55.66.21.90,Jaipur
+D009,C009,Android,49.36.120.11,Ahmedabad
+D010,C010,iPhone,87.90.12.55,Kolkata

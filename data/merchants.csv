@@ -1,0 +1,7 @@
+merchant_id,merchant_name,category,city,risk_level
+M001,QuickElectro,Electronics,Pune,HIGH
+M002,FreshMart,Grocery,Mumbai,LOW
+M003,FlyTravel,Travel,Delhi,MEDIUM
+M004,MobileHub,Electronics,Patna,HIGH
+M005,FashionPoint,Fashion,Bangalore,LOW
+M006,RechargeNow,Digital Services,Pune,HIGH

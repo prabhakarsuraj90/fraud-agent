@@ -1,0 +1,16 @@
+upi_handle,customer_id,created_days_ago,bank
+rahul1@oksbi,C001,10,SBI
+rahul2@oksbi,C001,9,SBI
+rahul3@okhdfc,C001,8,HDFC
+rahul4@paytm,C001,7,Paytm
+priya@oksbi,C002,400,SBI
+aman@okaxis,C003,25,Axis
+vikas1@oksbi,C005,6,SBI
+vikas2@oksbi,C005,5,SBI
+vikas3@okicici,C005,4,ICICI
+vikas4@paytm,C005,3,Paytm
+rohit1@oksbi,C007,18,SBI
+rohit2@okhdfc,C007,17,HDFC
+karan1@oksbi,C009,13,SBI
+karan2@paytm,C009,12,Paytm
+anjali@oksbi,C010,300,SBI

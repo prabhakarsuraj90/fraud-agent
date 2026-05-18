@@ -1,0 +1,11 @@
+customer_id,name,phone,kyc_level,city,account_age_days,risk_segment
+C001,Rahul Sharma,98XXXX1001,MIN_KYC,Pune,12,HIGH
+C002,Priya Mehta,98XXXX1002,FULL_KYC,Mumbai,980,LOW
+C003,Aman Khan,98XXXX1003,MIN_KYC,Delhi,30,MEDIUM
+C004,Neha Joshi,98XXXX1004,FULL_KYC,Bangalore,450,LOW
+C005,Vikas Yadav,98XXXX1005,MIN_KYC,Patna,7,HIGH
+C006,Sana Ali,98XXXX1006,FULL_KYC,Hyderabad,120,LOW
+C007,Rohit Verma,98XXXX1007,MIN_KYC,Pune,20,HIGH
+C008,Deepak Singh,98XXXX1008,FULL_KYC,Jaipur,760,LOW
+C009,Karan Patel,98XXXX1009,MIN_KYC,Ahmedabad,15,HIGH
+C010,Anjali Roy,98XXXX1010,FULL_KYC,Kolkata,500,LOW
