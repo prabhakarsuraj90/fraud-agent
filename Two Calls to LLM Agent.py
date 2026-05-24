@@ -129,53 +129,63 @@ messages = [
     }
 ]
 
-while True:
+# ============================================================
+# FIRST MODEL CALL
+# ============================================================
+#
+# Here model decides:
+# - whether tools are needed
+# - which tools to call
+#
+# ============================================================
 
-    # ========================================================
-    # MODEL REASONS ABOUT CURRENT STATE
-    # ========================================================
+response = client.chat.completions.create(
 
-    response = client.chat.completions.create(
+    model="gpt-4o-mini",
 
-        model="gpt-4o-mini",
+    messages=messages,
 
-        messages=messages,
+    tools=tools,
 
-        tools=tools,
+    tool_choice="auto"
+)
 
-        tool_choice="auto"
-    )
+# Extract assistant message
+response_message = response.choices[0].message
 
-    response_message = response.choices[0].message
+# ============================================================
+# DEBUGGING
+# ============================================================
 
-    # Add assistant message to conversation
-    messages.append(response_message)
+print("\n===== TOOL CALLS =====\n")
 
-    # ========================================================
-    # STOP CONDITION
-    # ========================================================
-    #
-    # If model does NOT request tools,
-    # investigation is complete.
-    #
-    # ========================================================
+print(response_message.tool_calls)
 
-    if not response_message.tool_calls:
+# ============================================================
+# APPEND ASSISTANT TOOL REQUEST
+# ============================================================
+#
+# VERY IMPORTANT
+#
+# We must append assistant tool-call message
+# BEFORE tool responses.
+#
+# ============================================================
 
-        print("\n===== FINAL INVESTIGATION REPORT =====\n")
+messages.append(response_message)
 
-        print(response_message.content)
+# ============================================================
+# EXECUTE ALL TOOL CALLS
+# ============================================================
 
-        break
-
-    # ========================================================
-    # EXECUTE ALL REQUESTED TOOLS
-    # ========================================================
+if response_message.tool_calls:
 
     for tool_call in response_message.tool_calls:
 
+        # Tool/function name
         function_name = tool_call.function.name
 
+        # Parse arguments JSON
         arguments = json.loads(
             tool_call.function.arguments
         )
@@ -185,7 +195,7 @@ while True:
         print(f"Arguments: {arguments}")
 
         # ====================================================
-        # TOOL EXECUTION
+        # EXECUTE CORRECT TOOL
         # ====================================================
 
         if function_name == "get_customer_transactions":
@@ -211,7 +221,7 @@ while True:
             result = "Unknown tool"
 
         # ====================================================
-        # APPEND TOOL RESULT
+        # APPEND TOOL RESPONSE
         # ====================================================
 
         messages.append({
@@ -222,3 +232,31 @@ while True:
 
             "content": json.dumps(result)
         })
+
+# ============================================================
+# SECOND MODEL CALL
+# ============================================================
+#
+# Now model receives:
+# - user request
+# - assistant tool requests
+# - actual tool outputs
+#
+# Model can now reason over gathered evidence.
+#
+# ============================================================
+
+final_response = client.chat.completions.create(
+
+    model="gpt-4o-mini",
+
+    messages=messages
+)
+
+# ============================================================
+# FINAL REPORT
+# ============================================================
+
+print("\n===== INVESTIGATION REPORT =====\n")
+
+print(final_response.choices[0].message.content)
